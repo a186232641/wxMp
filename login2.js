@@ -396,15 +396,15 @@ async function wxLogin(initialCookies = '') {
         // 1. 获取主页并初始化cookies
         console.log('1. 获取主页和初始cookies');
         let cookies = await getMainPage(initialCookies);
-
+        console.log("first"+cookies);
         // 2. 预登录
         console.log('2. 执行预登录');
         cookies = await prelogin(cookies);
-
+        console.log("prelogin"+cookies);
         // 3. 开始登录流程
         console.log('3. 开始登录流程');
         cookies = await startlogin(cookies);
-
+        console.log("startlogin"+cookies);
         // 4. 获取并解析二维码
         console.log('4. 获取登录二维码');
         const qrResult = await getQRCodeDecodeLink(cookies);
@@ -452,9 +452,7 @@ async function wxLogin(initialCookies = '') {
 // 使用示例
 async function main() {
     // 可以使用之前保存的cookies
-    let oldCookie = "ptcz=8ee1dee6c008eb87c055ba8f466e38a668452404e25ea763a81c495c21be7135; ua_id=p4R7PUHrOUw9AP7JAAAAAOtTsz34yO9Roh8k5rLLSsQ=; qimeiuuid42=18b1e0b0d15100a5699842c97630a75cd27dcfd637; qimeifingerprint=43eebbcba408005d45fafd3bd8cd7b0c; qimeiq36=; qimeih38=8cc884f5699842c97630a75c03000009818b1e; wxuin=39953027426791; pgv_pvid=7495067106; mm_lang=zh_CN; *clck=3964811679|1|fvj|0; xid=1d88897e745b192ff15b4d402429ea5d; *clsk=1mhpmx8|1746083222976|1|1|mp.weixin.qq.com/weheat-agent/payload/record; uuid=1cf67c41a4ea865563f49211ec61e6d2";
-
-    // 开始登录流程
+  let oldCookie ="ptcz=8ee1dee6c008eb87c055ba8f466e38a668452404e25ea763a81c495c21be7135; ua_id=p4R7PUHrOUw9AP7JAAAAAOtTsz34yO9Roh8k5rLLSsQ=; _qimei_uuid42=18b1e0b0d15100a5699842c97630a75cd27dcfd637; _qimei_fingerprint=43eebbcba408005d45fafd3bd8cd7b0c; _qimei_q36=; _qimei_h38=8cc884f5699842c97630a75c03000009818b1e; wxuin=39953027426791; pgv_pvid=7495067106; mm_lang=zh_CN; xid=1d88897e745b192ff15b4d402429ea5d; _clck=3964811679|1|fvl|0;"    // 开始登录流程
     const loginResult = await wxLogin(oldCookie);
 
     if (loginResult.success) {
